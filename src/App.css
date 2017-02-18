@@ -1,0 +1,86 @@
+body{
+  background: url('./bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+  color: white !important;
+}
+
+#root {
+  background-color: rgba(0,0,0,0.1);
+  transition: background-color 1.5s ease;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-logo-loading {
+  animation:  App-logo-around infinite 1.8s linear;
+  height: 80px;
+}
+.App-header {
+  background-color: rgba(34, 34, 34, 0.13);
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.logo-container {
+  padding: 15%;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes App-logo-around {
+  	from {
+		  transform: rotate(0deg)
+		           translate(-100px)
+		           rotate(0deg);
+  	}
+	  to {
+		  transform: rotate(360deg)
+		           translate(-100px) 
+		           rotate(0deg);
+	  }
+}
+.url{
+  width: 80% !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content {
+  padding: 2% 15%;
+}
+
+.video-container{
+  transition: all 0.5s ease;
+  justify-content: center;
+  display: flex;
+}
+
+
+.text-container{
+  padding: 1.5%;
+  width: 25%;
+  background-color: black;
+  border-left: 1px solid;
+  height: 600px;  
+}
+
+.text-container p {
+  text-align: left;
+  overflow-y: scroll;
+  height: 75%;
+  
+}
