@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import logo from './rocket_logo.png';
 import ReactPlayer from 'react-player'
 import './App.css';
-
+var io = window.io;
+console.log(io)
+var payload = 0;
+var socket = io();
 
 class App extends Component {
   constructor(props) {
@@ -13,15 +16,30 @@ class App extends Component {
       loading: true,
       text: ''
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleSubmit(event) {
-    this.setState({ video: this.input.value });
+    payload = 0;
+    document.getElementById("root").setAttribute("style", "background-color: rgba(0, 0, 0, 0.1); height:" + screen.availHeight + "px");
+    this.setState({ video: this.input.value, loading: true });
+    console.log(this.input.value);
+    socket.emit('url', { url: this.input.value });
+    socket.on('payload', (spayload) => {
+      console.log(spayload);
+      payload++;
+      if (payload > 2) {
+        this.setState({ loading: false, text: "" })
+        document.getElementById("root").setAttribute("style", "background-color: rgba(0, 0, 0, 0.5); height:" + screen.availHeight + "px");
+      }
+    })
+
     window.setTimeout(() => {
-      this.setState({ loading: false, text: "Marvel's The Avengers[4] (classified under the name Marvel Avengers Assemble in the United Kingdom and Ireland),[1][5] or simply The Avengers, is a 2012 American superhero film based on the Marvel Comics superhero team of the same name, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures.1 It is the sixth film in the Marvel Cinematic Universe. The film was written and directed by Joss Whedon and features an ensemble cast that includes Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth, Scarlett Johansson, Jeremy Renner, Tom Hiddleston, Clark Gregg, Cobie Smulders, Stellan Skarsgård, and Samuel L. Jackson. In the film, Nick Fury, director of the peacekeeping organization S.H.I.E.L.D., recruits Iron Man, Captain America, the Hulk, and Thor to form a team that must stop Thor's brother Loki from subjugating Earth." })
-      document.getElementById("root").setAttribute("style", "background-color: rgba(0, 0, 0, 0.5); height:" + screen.availHeight + "px");
+
     }, 3000)
+
     event.preventDefault();
   }
 
@@ -30,11 +48,11 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h1>PhaseDuo <img src={logo} className="App-logo" alt="logo" /></h1>
-        </div>
-        <div className="content">
           <h2 className="App-intro">
             Give us a link to a video with tons of text, and we'll summarize for you!
           </h2>
+        </div>
+        <div className="content">
           <div className="form-group input-group-lg">
             <form onSubmit={this.handleSubmit}>
               <input type="text" className="form-control url" ref={input => this.input = input} placeholder="Enter url here" aria-describedby="sizing-addon1" />

@@ -80,7 +80,6 @@ body{
 
 .text-container p {
   text-align: left;
-  overflow-y: scroll;
   height: 75%;
   
 }
