@@ -1,17 +1,17 @@
-var watson = require('watson-developer-cloud');  
-var fs = require('fs');  
-var path = require('path');  
+var watson = require('watson-developer-cloud');
+var fs = require('fs');
+var path = require('path');
 
-var speech_to_text = watson.speech_to_text({  
+var speech_to_text = watson.speech_to_text({
   username: process.env.USERNAME,
   password: process.env.PASSWORD,
   version: 'v1',
   url: 'https://stream.watsonplatform.net/speech-to-text/api',
 });
 
-exports.watsonSpeechToText = function(audioFile, ws) {
+exports.watsonSpeechToText = function (audioFile, ws) {
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
 
     var params = {
       content_type: 'audio/flac',
@@ -33,7 +33,7 @@ exports.watsonSpeechToText = function(audioFile, ws) {
 
     recognizeStream.setEncoding('utf8'); // to get strings instead of Buffers from `data` events
 
-    recognizeStream.on('results', function(e) {
+    recognizeStream.on('results', function (e) {
       if (e.results[0].final) {
         // console.log(e.results[0].alternatives[0]);
         //ws.send(JSON.stringify(e.results[0].alternatives[0]))
@@ -42,12 +42,11 @@ exports.watsonSpeechToText = function(audioFile, ws) {
       }
     });
 
-    recognizeStream.on('error', function(err) {
+    recognizeStream.on('error', function (err) {
       util.handleError('Error writing to transcript.json: ' + err);
     });
 
-    recognizeStream.on('connection-close', function() {
-      console.log('finished');
+    recognizeStream.on('close', function () {
       ws.emit('finished');
     });
   });

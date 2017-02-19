@@ -20,17 +20,21 @@ app.get('/', (req, res) => {
 })
 
 app.post('/test', (req, res) => {
-  res.send({ sum: req.body });
+  res.send({ topic: 'sample', shortDescription: 'Google', description: req.body.corpus, entity: '', imgUrl: '', summary: "Apple is an American multinational technology company headquartered in Cupertino, California, a suburb of San Jose, that designs, develops." });
 })
 
 io.on('connection', function (client) {
   client.on('url', (data) => {
     console.log('data', data);
-    // mock.forEach(d => {
-    //   client.emit('payload', d);
-    // })
-     youtube_dl.getYouTubeAudio(data.url)
-     .then(watson.watsonSpeechToText.bind(this, path.join(__dirname, 'file.flac'), client))
+    mock.forEach(d => {
+      client.emit('payload', d);
+    })
+
+    setTimeout(()=>{
+      client.emit('finished');
+    }, 3000)
+    //  youtube_dl.getYouTubeAudio(data.url)
+    //  .then(watson.watsonSpeechToText.bind(this, path.join(__dirname, 'file.flac'), client))
   })
 });
 
