@@ -135,28 +135,6 @@ class App extends Component {
 
         payload = "";
       }
-
-      // fetch('http://localhost:3000/test', {
-      //   method: 'POST',
-      //   headers: new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' }),
-      //   // mode: 'cors',
-      //   body: JSON.stringify({ corpus: spayload.transcript })
-      // }).then(resp => {
-      //   // console.log('payload received from nlp');
-      //   // console.log(resp);
-      //   resp.json().then(obj => {
-      //     console.log(obj);
-      //     var key = spayload.timestamps[0][1].toString().split('.')[0];
-      //     cards[key] = {
-      //       time: { start: spayload.timestamps[0][1], finish: spayload.timestamps[spayload.timestamps.length - 1][2] },
-      //       card: obj
-      //     }
-      //   })
-      // })
-
-
-
-
     })
   }
 
