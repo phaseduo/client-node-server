@@ -1,14 +1,18 @@
 body{
-  background: url('./bg.jpg');
+  background: url('./bg_7.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
   color: white !important;
+  height: auto;
 }
-
+p {
+  font-size: 22px;
+}
 #root {
   background-color: rgba(0,0,0,0.1);
   transition: background-color 1.5s ease;
+  height: auto;
 }
 .App {
   text-align: center;
@@ -16,6 +20,7 @@ body{
 
 .App-logo {
   height: 80px;
+  transform: rotate(25deg);
 }
 
 .App-logo-loading {
@@ -23,14 +28,26 @@ body{
   height: 80px;
 }
 .App-header {
-  background-color: rgba(34, 34, 34, 0.13);
-  height: 150px;
+  background-color: rgba(34, 34, 34, 0.5);
   padding: 20px;
   color: white;
 }
 
+.card-container{
+  text-align: left;
+  padding: 0.8%;
+  font-size: 18px;
+  margin-top: 1%;
+  background-color: rgba(6, 25, 54, 0.7);
+  transition: all 0.5s ease;  
+}
+
+.card-container p {
+  transition: all 0.5s ease;  
+}
+
 .App-intro {
-  font-size: large;
+  font-size: 2em;
 }
 
 .logo-container {
@@ -45,24 +62,30 @@ body{
 @keyframes App-logo-around {
   	from {
 		  transform: rotate(0deg)
-		           translate(-100px)
+		           translate(-120px)
 		           rotate(0deg);
   	}
 	  to {
 		  transform: rotate(360deg)
-		           translate(-100px) 
+		           translate(-120px) 
 		           rotate(0deg);
 	  }
 }
 .url{
+  font-size: 24px !important;
+  height: 50px !important;
   width: 80% !important;
   margin-left: auto;
   margin-right: auto;
 }
 .content {
-  padding: 2% 15%;
+  padding: 15% 15%;
+  transition: padding 1s ease;  
 }
-
+.logo-text{
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
 .video-container{
   transition: all 0.5s ease;
   justify-content: center;
@@ -73,13 +96,13 @@ body{
 .text-container{
   padding: 1.5%;
   width: 25%;
-  background-color: black;
-  border-left: 1px solid;
+  background-color: rgba(6, 25, 54, 0.7);
   height: 600px;  
+  transition: all 0.5s ease;  
 }
 
 .text-container p {
   text-align: left;
   height: 75%;
-  
+  transition: all 0.5s ease;
 }

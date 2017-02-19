@@ -42,6 +42,22 @@ exports.watsonSpeechToText = function (audioFile, ws) {
       }
     });
 
+
+    // var sendData = _.memoize(function (e) {
+    //   if (e.results[0].final) {
+    //     // console.log(e.results[0].alternatives[0]);
+    //     //ws.send(JSON.stringify(e.results[0].alternatives[0]))
+    //     ws.emit('payload', e.results[0].alternatives[0])
+    //     results.push(e);
+    //   }
+    // }, (e) => {
+    //   console.log(e.results[0].alternatives[0].transcript.replace(/ /gi, ''));
+    //   return e.results[0].alternatives[0].transcript.replace(/ /gi, '');
+    // });
+
+
+    // recognizeStream.on('results', sendData);
+
     recognizeStream.on('error', function (err) {
       util.handleError('Error writing to transcript.json: ' + err);
     });

@@ -2,6 +2,7 @@ require('dotenv').config()
 var watson = require('./watson'),
   bodyParser = require('body-parser'),
   youtube_dl = require('./youtube_dl'),
+  _ = require('lodash'),
   path = require('path'),
   mock = require('./mock');
 
@@ -20,26 +21,29 @@ app.get('/', (req, res) => {
 })
 
 app.post('/test', (req, res) => {
-  res.send({ topic: 'sample', shortDescription: 'Google', description: req.body.corpus, entity: '', imgUrl: '', summary: "Apple is an American multinational technology company headquartered in Cupertino, California, a suburb of San Jose, that designs, develops." });
+  console.log('hit');
+  res.send({
+    topic: 'sample', shortDescription: 'Google', description: req.body.corpus, entity: '', imgUrl: '', data: mock._data
+  });
 })
 
 io.on('connection', function (client) {
   client.on('url', (data) => {
     console.log('data', data);
-    mock.forEach(d => {
-      client.emit('payload', d);
-    })
+    // mock.data.forEach(d => {
+    //   client.emit('payload', d);
+    // })
 
-    setTimeout(()=>{
-      client.emit('finished');
-    }, 3000)
-    //  youtube_dl.getYouTubeAudio(data.url)
-    //  .then(watson.watsonSpeechToText.bind(this, path.join(__dirname, 'file.flac'), client))
+    // setTimeout(()=>{
+    //   client.emit('finished');
+    // }, 3000)
+    var ytube = _.memoize((url) => youtube_dl.getYouTubeAudio(url));
+    ytube(data.url).then(watson.watsonSpeechToText.bind(this, path.join(__dirname, 'file.flac'), client))
   })
 });
 
-server.listen(4000, function () {
-  console.log('listening on 4000');
+server.listen(3000, function () {
+  console.log('listening on 3000');
 });
 
 

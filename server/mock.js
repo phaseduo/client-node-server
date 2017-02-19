@@ -1,6 +1,6 @@
 var data = [
     {
-        transcript: "Google is an American multinational technology company specializing in Internet-related services and products that include online advertising technologies, search, cloud computing, software, and hardware Google was founded in 1996 by Larry Page and Sergey Brin while they were Ph.D.students at Stanford University, California",
+        transcript: "Google is an American multinational technology company specializing in Internet-related services and products that include online advertising technologies, search, cloud computing, software, and hardware Google was founded in 1996 by Larry Page and Sergey Brin while they were students at Stanford University, California. Together, they own about 14 percent of its shares and control 56 percent of the stockholder voting power through supervoting stock. They incorporated Google as a privately held company on September 4, 1998. An initial public offering (IPO) took place on August 19, 2004, and Google moved to its new headquarters in Mountain View, California, nicknamed the Googleplex. Google was founded in 1996 by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University, California. Together, they own about 14 percent of its shares and control 56 percent of the stockholder voting power through supervoting stock. They incorporated Google as a privately held company on September 4, 1998. An initial public offering (IPO) took place on August 19, 2004, and Google moved to its new headquarters in Mountain View, California, nicknamed the Googleplex.",
         word_confidence: {
             length: 100
         },
@@ -41,5 +41,31 @@ var data = [
     }
 ]
 
+var _data = [{
+    description: "A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other.A bicycle rider is called a cyclist, or bicyclist.Bicycles were introduced in the 19th century in Europe and as of 2003, more than 1 billion have been produced worldwide, twice as many as the number of automobiles that have been produced.",
+    entity: "",
+    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Campana_cl%C3%A1sica_de_bicicleta_%28sonido%29_02.wav",
+    shortDescription: "A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other.",
+    source: "Wikipedia",
+    topic: "Bicycle"
+}, {
+    description: "This article is not about Gamo subsidiary BSA Guns Limited or BSA Company or its successors.↵The Birmingham Small Arms Company Limited was a major British industrial combine, a group of businesses manufacturing military and sporting firearms; bicycles; motorcycles; cars; buses and bodies; steel; iron castings; hand, power, and machine tools; coal cleaning and handling plants; sintered metals; and hard chrome process.↵",
+    entity: "Thing",
+    imgUrl: "",
+    shortDescription: "Small arms manufacturing company",
+    source: "KnowledgeGraph",
+    topic: "Birmingham Small Arms Company"
+},
+{
+    description: "A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other.A bicycle rider is called a cyclist, or bicyclist.Bicycles were introduced in the 19th century in Europe and as of 2003, more than 1 billion have been produced worldwide, twice as many as the number of automobiles that have been produced.",
+    entity: "",
+    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Campana_cl%C3%A1sica_de_bicicleta_%28sonido%29_02.wav",
+    shortDescription: "A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other.",
+    source: "Wikipedia",
+    topic: "Bicycle"
+}]
 
-module.exports = data;
+module.exports = {
+    data: data,
+    _data: _data
+};
