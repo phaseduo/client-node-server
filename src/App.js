@@ -84,7 +84,7 @@ class App extends Component {
 
     socket.on('payload', (spayload) => {
       payload += spayload.transcript + ' . ';
-      sumpayload += spayload.transcript;
+      sumpayload += spayload.transcript + ' . ';
       payloadcount += payload.split(' . ').length;
       document.getElementById("root").setAttribute("style", "background-color: rgba(0, 0, 0, 0.5);  height: " + screen.height + "px");
       this.setState({ loading: false });
@@ -93,7 +93,7 @@ class App extends Component {
         payloadcount = 0;
         var _payload = _.chunk(payload.split(" "), 12).map((c) => c.join(" ")).join(" . ");
         if (_.isEmpty(this.state.summary)) {
-          // console.log("payload count:", payloadcount);
+          console.log("payload:", sumpayload);
           fetch('http://ab03d5b5.ngrok.io/api/summary/corpus', {
             method: 'POST',
             headers: new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' }),
@@ -101,11 +101,11 @@ class App extends Component {
             body: JSON.stringify({ corpus: sumpayload })
           }).then(resp => {
             resp.json().then(j => {
-              console.log("Summary", j)
+              console.log(j);
               this.setState({
-                sloading: false, summary: _.truncate(j.data.summary, {
+                sloading: false, summary: _.capitalize(_.truncate(j.data, {
                   length: 400
-                })
+                }))
               })
             })
           })
