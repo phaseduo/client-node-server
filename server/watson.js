@@ -35,7 +35,7 @@ exports.watsonSpeechToText = function(audioFile, ws) {
 
     recognizeStream.on('results', function(e) {
       if (e.results[0].final) {
-        console.log(e.results[0].alternatives[0]);
+        // console.log(e.results[0].alternatives[0]);
         //ws.send(JSON.stringify(e.results[0].alternatives[0]))
         ws.emit('payload', e.results[0].alternatives[0])
         results.push(e);
@@ -46,15 +46,9 @@ exports.watsonSpeechToText = function(audioFile, ws) {
       util.handleError('Error writing to transcript.json: ' + err);
     });
 
-    /*recognizeStream.on('connection-close', function() {
-        var transcriptFile = path.join(__dirname, 'transcript.json');
-
-      fs.writeFile(transcriptFile, JSON.stringify(results), function(err) {
-        if (err) {
-          util.handleError(err);
-        }
-        resolve();
-      });
-    });*/
+    recognizeStream.on('connection-close', function() {
+      console.log('finished');
+      ws.emit('finished');
+    });
   });
 };

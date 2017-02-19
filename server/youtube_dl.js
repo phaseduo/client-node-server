@@ -3,12 +3,12 @@ var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
 
 exports.getYouTubeAudio = function(videoUrl) {  
-    console.log(videoUrl)
+    // console.log(videoUrl)
     return new Promise(function(resolve, reject) {
     youtube_dl = spawn('youtube-dl', ['--extract-audio', '--audio-format', 'mp3', '-o', 'file.%(ext)s', videoUrl]);
 
     youtube_dl.stdout.on('data', function(data) {
-      console.log(data.toString());
+      // console.log(data.toString());
     });
 
     youtube_dl.stderr.on('data', function(data) {
