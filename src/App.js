@@ -37,10 +37,8 @@ class App extends Component {
   updateText() {
     if (keepupdate) {
       window.setTimeout(() => {
-        // console.log(this.state);
         if (cardscounter == this.state.cards.length)
           cardscounter = 0;
-        // console.log(cardscounter);
         this.setState({ cardData: this.state.cards[cardscounter++] })
         keepupdate = true;
         this.updateText();
@@ -51,10 +49,8 @@ class App extends Component {
   updateCards(time) {
     var card;
     counter++;
-    // console.log(cards);
     if (!_.isEmpty(cards)) {
       var vtime = ((time.played * 100) + (counter / 2.55)).toString().split('.')[0]
-      // console.log(vtime);      
       card = cards[vtime];
     }
     if (card) {
@@ -91,9 +87,8 @@ class App extends Component {
 
       if (payloadcount >= 4) {
         payloadcount = 0;
-        var _payload = _.chunk(payload.split(" "), 12).map((c) => c.join(" ")).join(" . ");
+//         var _payload = _.chunk(payload.split(" "), 12).map((c) => c.join(" ")).join(" . ");
         if (_.isEmpty(this.state.summary)) {
-          console.log("payload:", sumpayload);
           fetch('http://ab03d5b5.ngrok.io/api/summary/corpus', {
             method: 'POST',
             headers: new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' }),
@@ -101,7 +96,6 @@ class App extends Component {
             body: JSON.stringify({ corpus: sumpayload })
           }).then(resp => {
             resp.json().then(j => {
-              console.log(j);
               this.setState({
                 sloading: false, summary: _.capitalize(_.truncate(j.data, {
                   length: 400
@@ -118,13 +112,10 @@ class App extends Component {
           mode: 'cors',
           body: JSON.stringify({ corpus: payload })
         }).then(resp => {
-          // console.log('payload received from nlp');
-          // console.log(resp);
           resp.json().then(obj => {
             if (obj.status == 200) {
               var key = spayload.timestamps[0][1].toString().split('.')[0];
-              // console.log(obj);
-              console.log("key", key);
+              console.log("video time", key);
               cards[key] = {
                 time: { start: spayload.timestamps[0][1], finish: spayload.timestamps[spayload.timestamps.length - 1][2] },
                 data: obj.data,
@@ -144,7 +135,7 @@ class App extends Component {
         <div className="content">
           <h1><img src={logo_text} className="logo-text" /><img src={logo} className="App-logo" alt="logo" /></h1>
           <h1 className="App-intro">
-            Give us a link to a video with tons of text, and we'll summarize for you!
+            Give us a link to a video with tons of text, and we will summarize for you!
           </h1>
           <div className="form-group input-group-lg">
             <form onSubmit={this.handleSubmit}>
